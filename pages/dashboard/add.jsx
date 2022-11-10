@@ -20,6 +20,7 @@ function Add() {
       <div>
         <AddNewEntryBox />
       </div>
+      <p>Sissekandeid kokku: 0</p>
     </Container>
   )
 }

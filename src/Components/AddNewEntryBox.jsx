@@ -44,7 +44,7 @@ function AddNewEntryBox() {
                 maxRows={5}
             />
             <div style={{textAlign:"right",paddingTop:"0.5em"}}>
-                <Button color="success" variant="contained">Salvesta</Button>
+                <Button color="success" variant="contained">Lisa</Button>
             </div>
         </Paper>
     )

@@ -9,8 +9,7 @@ import Link from 'next/link'
 
 function CommentsListItem() {
     return (
-        <Paper sx={{ width: { xs: '100%', sm: '20em' } }} style={{
-            width: "20em",
+        <Paper sx={{ width: { sm: '100%', md: '21em' } }} style={{
             padding: 8,
         }} elevation={3}>
             <Box sx={{ display: "flex", flexDirection: "column" }}>

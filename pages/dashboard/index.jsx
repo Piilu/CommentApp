@@ -13,10 +13,10 @@ function Dashboard() {
         <div>
           <h2>Dashboard</h2>
           <Button variant="contained" startIcon={<AddIcon />}>Lisa uus</Button>
+          <small style={{marginLeft:"auto",display:"block"}}>Sissekandeid kokku: 0</small>
         </div>
         <Box
           sx={{
-            justifyContent: "center",
             display: 'flex',
             gap: 5,
             flexDirection: 'row',
