@@ -5,6 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Button  from '@mui/material/Button';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
+import Link from 'next/link'
 
 function CommentsListItem() {
     return (
@@ -19,7 +20,7 @@ function CommentsListItem() {
                         <small>10.11.22-15.11.22</small>
                     </div>
                     <div style={{marginLeft:"auto"}}>
-                      <IconButton>
+                      <IconButton href='/dashboard/view/asd'>
                         <VisibilityIcon/>
                       </IconButton>
                       <IconButton disabled>
