@@ -8,8 +8,8 @@ function CommentBox(props) {
         <Paper style={{
             padding: 8,
         }} elevation={3} >
-            <h2 style={{marginBottom:"0"}}>{item.title}</h2>
-            <small>{item.smallTitle}</small>
+            <h2 style={{marginBottom:"0"}}>Nädal 1</h2>
+            <small>10.11.22-15.11.22</small>
             {/* 10.11.22-15.11.22 */}
             
             <div style={{maxHeight:"40vh",overflow:"auto"}}>
