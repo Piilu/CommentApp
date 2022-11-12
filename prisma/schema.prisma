@@ -20,10 +20,11 @@ datasource db {
 
 model Entrys {
   id    Int     @id @default(autoincrement())
-  email String  @unique
   content String @db.LongText()
-  comment String @db.LongText()
+  comment String? @db.LongText()
   commentAdded Boolean
+  entryDate DateTime
+  week Int
   updatedAt DateTime
   createdAt DateTime @default(now())
 }

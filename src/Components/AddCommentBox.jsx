@@ -4,15 +4,21 @@ import Paper from '@mui/material/Paper'
 import React, { useState } from 'react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useSnackbar } from 'notistack';
+import axios from 'axios';
 
-function AddCommentBox() {
-    const CHARACTER_LIMIT = 255;
-    const [comment, SetComment] = useState("");
+function AddCommentBox(props) {
+    const {refreshData,saveItem} = props;
+    const CHARACTER_LIMIT = 600;
+    const [comment, setComment] = useState("");
     const { enqueueSnackbar } = useSnackbar();
-
     const saveComment = () => {
-        console.log("saveing comment " + comment)
-        enqueueSnackbar("Kommentaar salvestatud", { variant: "success" })
+        axios.put('/api/add/comment',{comment,week:saveItem.week}).then(res=>{
+            refreshData();
+            setComment("")
+            enqueueSnackbar("Kommentaar salvestatud", { variant: "success" })
+        }).catch(e=>{
+            enqueueSnackbar("Midagi läks valesti", { variant: "error" })
+        })
     }
 
     return (
@@ -28,10 +34,10 @@ function AddCommentBox() {
                     style: { marginLeft: "auto", marginRight: "0" }
                 }}
                 inputProps={{
-                    maxlength: CHARACTER_LIMIT
+                    maxLength: CHARACTER_LIMIT
                 }}
                 value={comment}
-                onChange={e => SetComment(e.target.value)}
+                onChange={e => setComment(e.target.value)}
                 helperText={`${comment.length}/${CHARACTER_LIMIT}`}
                 multiline
                 minRows={3}

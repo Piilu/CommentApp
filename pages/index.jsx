@@ -8,13 +8,37 @@ import FormHelperText from "@mui/material/FormHelperText"
 import Button from "@mui/material/Button"
 import Link from 'next/link'
 import { useState } from "react"
+import { getSession } from "next-auth/react"
+import { redirect } from "next/dist/server/api-utils"
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  if (session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard",
+      },
+    }
+  }
+  else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/addcomments/add"
+      }
+    }
+  }
+}
 
 function Index() {
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  const handleLogin = ()=>{
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
     console.log(`Login user ${email} with password ${password}`)
   }
+
 
   return (
     <Grid container
@@ -27,8 +51,8 @@ function Index() {
           <Divider />
           <CardContent >
             <form onSubmit={e => { handleLogin(e) }}>
-              <TextField style={{marginBottom:"0.5em"}} variant="filled" fullWidth value={email} onChange={e => setEmail( e.target.value)} label='Email' size='small' id="login-email-input" />
-              <TextField style={{marginBottom:"0.5em"}} variant="filled" fullWidth value={password} onChange={e => setPassword(e.target.value)} label='Password' type='password' size='small' id="login-password-input" aria-describedby="my-helper-text" />
+              <TextField style={{ marginBottom: "0.5em" }} variant="filled" fullWidth value={email} onChange={e => setEmail(e.target.value)} label='Email' size='small' id="login-email-input" />
+              <TextField style={{ marginBottom: "0.5em" }} variant="filled" fullWidth value={password} onChange={e => setPassword(e.target.value)} label='Password' type='password' size='small' id="login-password-input" aria-describedby="my-helper-text" />
               <Grid textAlign="right">
                 <Button margin="0.5" type='submit' variant='contained'>Login</Button>
               </Grid>

@@ -11,19 +11,37 @@ import Link from 'next/link'
 import { useState } from "react"
 import Box  from "@mui/material/Box"
 import AddNewEntryBox from "../../src/Components/AddNewEntryBox"
+import { getSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  if (session) {
+    return {
+      props: { session}
+    }
+  }
+  else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    }
+  }
+}
 
 function Add() {
   return (
     <Container>
-      <h2> <Box sx={{ display: "flex", }}>
+      <h2> <Box sx={{ display: "flex" }}>
         <h2>Kommentaaride lisamine</h2>
         <Button variant="outlined" href='/dashboard' style={{ height: "20%", marginLeft: "auto", marginTop: "auto", marginBottom: "auto" }}>Dashboard</Button>
       </Box></h2>
       <div>
-        <AddNewEntryBox />
+        <AddNewEntryBox/>
       </div>
-      <p>Sissekandeid kokku: 0</p>
+      {/* <p>Sissekandeid kokku: 0</p> */}
     </Container>
   )
 }
