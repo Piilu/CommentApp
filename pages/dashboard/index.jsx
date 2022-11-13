@@ -13,6 +13,7 @@ import Tab from '@mui/material/Tab';
 import TabPanel from '@mui/lab/TabPanel';
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/router"
+import Head from 'next/head'
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 import dayjs from 'dayjs';
@@ -41,7 +42,6 @@ export async function getServerSideProps(context) {
   }
 }
 
-
 function Dashboard(props) {
   const { entrys } = props;
   const [value, setValue] = useState("1")
@@ -59,10 +59,12 @@ function Dashboard(props) {
     setValue(newValue)
     refreshData();
   }
-  //console.log(dayjs(entrys[1].entryDate).week())
-  //dayjs(entrys[0].entryDate).week().format("DD/MM/YYYY")
+  
   return (
     <div >
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <Container>
         <div>
           <h2>Dashboard</h2>

@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 import dayjs from 'dayjs'
 import prisma from '../../../src/db/prisma'
-
+import Head from 'next/head'
 
 export async function getServerSideProps(context) {
     const session = await getSession(context)
@@ -49,6 +49,9 @@ function Viewcomment(props) {
 
         return (
             <Container>
+                <Head>
+                    <title>Nädala vaade</title>
+                </Head>
                 <Box sx={{ display: "flex" }}>
                     <h2>Juhendaja kommentaar praktikanidle</h2>
                     <Button variant="outlined" href='/dashboard' style={{ height: "20%", marginLeft: "auto", marginTop: "auto", marginBottom: "auto" }}>Dashboard</Button>
@@ -70,6 +73,9 @@ function Viewcomment(props) {
     else {
         return (
             <Container>
+                <Head>
+                    <title>404</title>
+                </Head>
                 <h2>Sellise idga sissekannet ei leitud</h2>
             </Container>
         )
