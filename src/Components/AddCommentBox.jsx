@@ -13,7 +13,7 @@ function AddCommentBox(props) {
     const { enqueueSnackbar } = useSnackbar();
     const saveComment = () => {
         if (comment.trim().length) {
-            axios.put('/api/add/comment', { comment, week: saveItem.week }).then(res => {
+            axios.put('/api/add/comment', { comment, week: saveItem.week, password: "UzS*HgWuTWjyV9u6yNmjxv@GRMuQdjRcP%fjVZp%yBdJ%MH$LPYz7BtI+276" }).then(res => {
                 refreshData();
                 setComment("")
                 enqueueSnackbar("Kommentaar salvestatud", { variant: "success" })

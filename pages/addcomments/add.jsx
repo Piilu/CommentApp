@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
 
     const entrys = await prisma.entrys.findMany({
         orderBy: [{
-            week: "asc",
+            entryDate: "asc",
         }]
     });
     return {
