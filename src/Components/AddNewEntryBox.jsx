@@ -19,12 +19,18 @@ function AddNewEntryBox(props) {
     };
 
     const saveData = async () => {
-        await axios.post("/api/add/entry", { content: comment, date }).then(res => {
-            setComment("")
-            enqueueSnackbar("Sissekanne lisatud", { variant: "success" })
-        }).catch(e => {
-            enqueueSnackbar("Midagi läks valesti", { variant: "error" })
-        })
+        if (comment.trim().length != 0) {
+
+            await axios.post("/api/add/entry", { content: comment, date }).then(res => {
+                setComment("")
+                enqueueSnackbar("Sissekanne lisatud", { variant: "success" })
+            }).catch(e => {
+                enqueueSnackbar("Midagi läks valesti", { variant: "error" })
+            })
+        }
+        else {
+            enqueueSnackbar("Tühja sissekannet ei saa lisada", { variant: "error" })
+        }
 
 
     }

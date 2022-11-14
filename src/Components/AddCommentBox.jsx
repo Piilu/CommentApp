@@ -7,18 +7,23 @@ import { useSnackbar } from 'notistack';
 import axios from 'axios';
 
 function AddCommentBox(props) {
-    const {refreshData,saveItem} = props;
+    const { refreshData, saveItem } = props;
     const CHARACTER_LIMIT = 600;
     const [comment, setComment] = useState("");
     const { enqueueSnackbar } = useSnackbar();
     const saveComment = () => {
-        axios.put('/api/add/comment',{comment,week:saveItem.week}).then(res=>{
-            refreshData();
-            setComment("")
-            enqueueSnackbar("Kommentaar salvestatud", { variant: "success" })
-        }).catch(e=>{
-            enqueueSnackbar("Midagi läks valesti", { variant: "error" })
-        })
+        if (comment.trim().length) {
+            axios.put('/api/add/comment', { comment, week: saveItem.week }).then(res => {
+                refreshData();
+                setComment("")
+                enqueueSnackbar("Kommentaar salvestatud", { variant: "success" })
+            }).catch(e => {
+                enqueueSnackbar("Midagi läks valesti", { variant: "error" })
+            })
+        }
+        else {
+            enqueueSnackbar("Tühja kommentaari ei saa lisada", { variant: "error" })
+        }
     }
 
     return (
