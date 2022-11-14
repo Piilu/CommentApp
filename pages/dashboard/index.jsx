@@ -3,9 +3,10 @@ import Container from "@mui/material/Container"
 import CommentsListItem from '../../src/Components/CommentsListBox'
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
+import BadgeIcon from '@mui/icons-material/Badge';
 import Tabs from '@mui/material/Tabs';
-import { ResetTvRounded } from '@mui/icons-material';
+import { PictureAsPdf, ResetTvRounded } from '@mui/icons-material';
 import prisma from '../../src/db/prisma';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -59,7 +60,7 @@ function Dashboard(props) {
     setValue(newValue)
     refreshData();
   }
-  
+
   return (
     <div >
       <Head>
@@ -69,9 +70,12 @@ function Dashboard(props) {
         <div>
           <h2>Dashboard</h2>
           <Button variant="contained" href='/dashboard/add' startIcon={<AddIcon />}>Lisa uus</Button>
-          <small style={{ marginLeft: "auto", display: "block" }}>Sissekandeid kokku: {entrys.length}</small>
+          <Button variant="contained" color='error' href='/dashboard/view/pdf' style={{ marginLeft: "0.5em" }} startIcon={<PictureAsPdf />}>Pdf</Button>
+          <IconButton color='success' href='/addcomments/add' style={{ float: "right" }}><BadgeIcon /></IconButton>
+          <small style={{ marginLeft: "auto", display: "block", marginTop: "0.5em" }}>Sissekandeid kokku: {entrys.length}</small>
           <small style={{ marginLeft: "auto", display: "block" }}>Sissekandeid koos kommentaariga: {entrysWithComments.length}</small>
           <small style={{ marginLeft: "auto", display: "block" }}>Sissekandeid koos kommentaariga nädala kaupa: {uniqBy(entrys.filter(x => { return x.commentAdded == true }), obj => obj.week).length}</small>
+          <small style={{ marginLeft: "auto", display: "block" }}>Ootab juhendaja kommentaari: {uniqBy(entrys.filter(x => { return x.commentAdded == false }), obj => obj.week).length}</small>
         </div>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

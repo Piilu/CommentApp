@@ -10,6 +10,10 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import Head from 'next/head'
+import dayjs from 'dayjs'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+dayjs.extend(weekOfYear)
+
 
 export async function getServerSideProps(context) {
 
@@ -60,9 +64,9 @@ function CommentAdd(props) {
     return (
         <Container>
             <Head>
-                <title>Kommentaaride lisamine</title>
+                <title>Nädal: {dayjs(entry.entryDate).week()}</title>
             </Head>
-            <h2>Kommentaaride lisamine</h2>
+            <h2>Kommentaaride lisamine (Nädal: {dayjs(entry.entryDate).week()})</h2>
             <CommentBox limitWidth={false} isWeek={true} item={entrys.filter(x => { return x.week == entry.week })} isEntry={true} />
             <div style={{ marginTop: "1em" }}>
                 <AddCommentBox saveItem={entry} refreshData={refreshData} />

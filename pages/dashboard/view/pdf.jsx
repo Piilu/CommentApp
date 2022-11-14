@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
 
 function Pdf(props) {
     const { entrys } = props;
-    console.log(entrys)
+    //console.log(entrys)
     if (entrys.length == 0 || entrys == undefined) {
         return <Container>
             <Head>
