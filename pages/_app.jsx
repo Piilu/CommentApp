@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import { TextField } from '@mui/material';
 import CookieLogin from '../src/Components/CookieLogin';
+import dayjs from 'dayjs';
 
 function MyApp({ Component, pageProps: { session, ...pageProps }, }) {
   const USER_PASSWORD = "UzS*HgWuTWjyV9u6yNmjxv@GRMuQdjRcP%fjVZp%yBdJ%MH$LPYz7BtI+276"
@@ -17,8 +18,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, }) {
   const [cookiePassword, setcookiePassword] = useCookies([PASSWORD_COOKIE_NAME]);
 
   const handleAuth = (password) => {
-    console.log("test")
-    setcookiePassword(PASSWORD_COOKIE_NAME,password)
+    const currentYear = new Date().getFullYear();
+    let expires = new Date(currentYear, 11, 31);
+    expires.setTime(expires.getTime())
+    setcookiePassword(PASSWORD_COOKIE_NAME,password,{expires})
   }
 
   useEffect(() => {

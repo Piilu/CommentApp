@@ -18,7 +18,7 @@ function CookieLogin(props) {
             alignItems="center"
             justifyContent="center"
             style={{ minHeight: '100vh', }}>
-            <Grid style={{ minWidth: "50vh" }}>
+            <Grid style={{ minWidth: "50%" }}>
                 <Card className='default-padding'>
                     <CardHeader sx={{ p: 0, paddingBottom: 1 }} title="Login" />
                     <Divider />
