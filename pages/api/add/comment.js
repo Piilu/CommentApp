@@ -30,5 +30,5 @@ export default async function handle(req, res) {
         .send({ success: false });
     }
   }
-  res.json({message:"Not implemented"})
+  //res.json({message:"Not implemented"})
 }
